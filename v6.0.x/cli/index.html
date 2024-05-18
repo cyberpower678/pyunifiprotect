@@ -1,0 +1,1887 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Unofficial UniFi Protect Python API and CLI">
+      
+      
+      
+        <link rel="canonical" href="https://angellusmortis.github.io/pyunifiprotect/latest/v6.0.x/cli/">
+      
+      
+        <link rel="prev" href="../dev/">
+      
+      
+        <link rel="next" href="../api/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.23">
+    
+    
+      
+        <title>Command Line - Unofficial UniFi Protect Python API and CLI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#command-line" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You're not viewing the latest version.
+  <a href="../..">
+    <strong>Click here to go to latest.</strong>
+  </a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Unofficial UniFi Protect Python API and CLI" class="md-header__button md-logo" aria-label="Unofficial UniFi Protect Python API and CLI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Unofficial UniFi Protect Python API and CLI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Command Line
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AngellusMortis/pyunifiprotect" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyunifiprotect
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../dev/" class="md-tabs__link">
+        
+  
+    
+  
+  Development
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Command Line
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/" class="md-tabs__link">
+        
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/AngellusMortis/pyunifiprotect/releases" class="md-tabs__link">
+        
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Unofficial UniFi Protect Python API and CLI" class="md-nav__button md-logo" aria-label="Unofficial UniFi Protect Python API and CLI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Unofficial UniFi Protect Python API and CLI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AngellusMortis/pyunifiprotect" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pyunifiprotect
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Command Line
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Command Line
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        
+<li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    Environment Variables
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#cli-args" class="md-nav__link">
+    CLI Args
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+      
+        
+<li class="md-nav__item">
+  <a href="#timezones" class="md-nav__link">
+    Timezones
+  </a>
+  
+</li>
+
+      
+        
+<li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#subcommands" class="md-nav__link">
+    Subcommands
+  </a>
+  
+    <nav class="md-nav" aria-label="Subcommands">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#multiple-item-cli-commands" class="md-nav__link">
+    Multiple Item CLI Commands
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple Item CLI Commands">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#adoptable-devices-cli-commands" class="md-nav__link">
+    Adoptable Devices CLI Commands
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#backup-cli" class="md-nav__link">
+    Backup CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup CLI">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#backup-options" class="md-nav__link">
+    Backup Options
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#file-name-and-title-formatting" class="md-nav__link">
+    File Name and Title Formatting
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#backing-up-camera-events" class="md-nav__link">
+    Backing Up Camera Events
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#camera-cli" class="md-nav__link">
+    Camera CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="Camera CLI">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#chime-cli" class="md-nav__link">
+    Chime CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="Chime CLI">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/AngellusMortis/pyunifiprotect/releases" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        
+<li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    Authentication
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    Environment Variables
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#cli-args" class="md-nav__link">
+    CLI Args
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+      
+        
+<li class="md-nav__item">
+  <a href="#timezones" class="md-nav__link">
+    Timezones
+  </a>
+  
+</li>
+
+      
+        
+<li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#subcommands" class="md-nav__link">
+    Subcommands
+  </a>
+  
+    <nav class="md-nav" aria-label="Subcommands">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#multiple-item-cli-commands" class="md-nav__link">
+    Multiple Item CLI Commands
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple Item CLI Commands">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#adoptable-devices-cli-commands" class="md-nav__link">
+    Adoptable Devices CLI Commands
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#backup-cli" class="md-nav__link">
+    Backup CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup CLI">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#backup-options" class="md-nav__link">
+    Backup Options
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#file-name-and-title-formatting" class="md-nav__link">
+    File Name and Title Formatting
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#backing-up-camera-events" class="md-nav__link">
+    Backing Up Camera Events
+  </a>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#camera-cli" class="md-nav__link">
+    Camera CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="Camera CLI">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+          
+<li class="md-nav__item">
+  <a href="#chime-cli" class="md-nav__link">
+    Chime CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="Chime CLI">
+      <ul class="md-nav__list">
+        
+          
+<li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+        
+      </ul>
+    </nav>
+  
+</li>
+
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="command-line">Command Line<a class="headerlink" href="#command-line" title="Permanent link">&para;</a></h1>
+<p>The <code>unifi-protect</code> command is provided to give a CLI interface to interact with your UniFi Protect instance as well. All
+commands support JSON output so it works great with <code>jq</code> for complex scripting.</p>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<p>Following traditional <a href="https://12factor.net/">twelve factor app design</a>, the preferred way to provided authentication
+credentials to provided environment variables, but CLI args are also supported.</p>
+<div class="admonition warning">
+<p class="admonition-title">About Ubiquiti SSO accounts</p>
+<p>Ubiquiti SSO accounts are not supported and actively discouraged from being used. There is no option to use MFA. You are expected to use local access user. <code>pyunifiprotect</code> is not designed to allow you to use your owner account to access the your console or to be used over the public Internet as both pose a security risk.</p>
+</div>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UFP_USERNAME</span><span class="o">=</span>YOUR_USERNAME_HERE
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UFP_PASSWORD</span><span class="o">=</span>YOUR_PASSWORD_HERE
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UFP_ADDRESS</span><span class="o">=</span>YOUR_IP_ADDRESS
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UFP_PORT</span><span class="o">=</span><span class="m">443</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1"># change to false if you do not have a valid HTTPS Certificate for your instance</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">UFP_SSL_VERIFY</span><span class="o">=</span>True
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>unifi-protect<span class="w"> </span>nvr
+</code></pre></div></td></tr></table></div>
+<h3 id="cli-args">CLI Args<a class="headerlink" href="#cli-args" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>unifi-protect<span class="w"> </span>-U<span class="w"> </span>YOUR_USERNAME_HERE<span class="w"> </span>-P<span class="w"> </span>YOUR_PASSWORD_HERE<span class="w"> </span>-a<span class="w"> </span>YOUR_IP_ADDRESS<span class="w"> </span>-p<span class="w"> </span><span class="m">443</span><span class="w"> </span>--no-verify<span class="w"> </span>nvr
+</code></pre></div></td></tr></table></div>
+<h2 id="timezones">Timezones<a class="headerlink" href="#timezones" title="Permanent link">&para;</a></h2>
+<p>A number of commands allow you to enter a datetime as an argument or output files with the datetime in the filename. As a result, it is very important for <code>pyunifiprotect</code> to know your consoles local timezone. If you on a physical machine (not docker/VM), chances are this is already set up correctly for you (<code>/etc/localtime</code>), but otherwise you may need to set the <code>TZ</code> environment variable. <code>TZ</code> can also be used to override your system timezone as well if for whatever reason you need to. It should be the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Olson timezone name</a> for the timezone that your UniFi Protect Instance is in.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nv">TZ</span><span class="o">=</span>America/New_York<span class="w"> </span>unifi-protect<span class="w"> </span>--help
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If for whatever reason your system does not have then correct timezone data, you can install the <code>tz</code> extra to get the data. This just adds the package <a href="https://pypi.org/project/tzdata/">tzdata</a> as a requirement. It is included by default in the <a href="/#using-docker-container">Docker image</a>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pyunifiprotect<span class="o">[</span>tz<span class="o">]</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>--help
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>Usage:<span class="w"> </span>unifi-protect<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>UniFi<span class="w"> </span>Protect<span class="w"> </span>CLI
+</code></pre></div></td></tr></table></div>
+<h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Option</th>
+<th>Required?</th>
+<th>Env</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-U</code></td>
+<td><code>--username</code></td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td><code>UFP_USERNAME</code></td>
+<td>text</td>
+<td></td>
+<td>UniFi Protect username</td>
+</tr>
+<tr>
+<td><code>-P</code></td>
+<td><code>--password</code></td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td><code>UFP_PASSWORD</code></td>
+<td>text</td>
+<td></td>
+<td>UniFi Protect password</td>
+</tr>
+<tr>
+<td><code>-a</code></td>
+<td><code>--address</code></td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td><code>UFP_ADDRESS</code></td>
+<td>text</td>
+<td></td>
+<td>UniFi Protect IP address or hostname</td>
+</tr>
+<tr>
+<td><code>-p</code></td>
+<td><code>--port</code></td>
+<td></td>
+<td><code>UFP_PORT</code></td>
+<td>integer</td>
+<td><code>443</code></td>
+<td>UniFi Protect port</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--no-verify</code></td>
+<td></td>
+<td><code>UFP_SSL_VERIFY</code></td>
+<td>boolean</td>
+<td><code>True</code></td>
+<td>Verify SSL</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--output-format</code></td>
+<td></td>
+<td></td>
+<td><code>json</code>,<code>plain</code></td>
+<td><code>plain</code></td>
+<td>Preferred output format. Not all commands support both JSON and plain and may still output in one or the other.</td>
+</tr>
+<tr>
+<td><code>-u</code></td>
+<td><code>--include-unadopted</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Include devices not adopted by this NVR.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--show-completion</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Show completion for the current shell, to copy it or customize the installation.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--help</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Show help message and exit.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="subcommands">Subcommands<a class="headerlink" href="#subcommands" title="Permanent link">&para;</a></h3>
+<p>For any subcommand you can use <code>unifi-protect COMMAND --help</code></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backup</code></td>
+<td><a href="#backup-cli">Backup CLI</a>.</td>
+</tr>
+<tr>
+<td><code>cameras</code></td>
+<td>Camera device CLI.</td>
+</tr>
+<tr>
+<td><code>chimes</code></td>
+<td>Chime device CLI.</td>
+</tr>
+<tr>
+<td><code>decode-ws-msg</code></td>
+<td>Decodes a base64 encoded UniFi Protect Websocket binary message.</td>
+</tr>
+<tr>
+<td><code>doorlocks</code></td>
+<td>Doorlock device CLI.</td>
+</tr>
+<tr>
+<td><code>events</code></td>
+<td>Events CLI.</td>
+</tr>
+<tr>
+<td><code>generate-sample-data</code></td>
+<td>Generates sample data for UniFi Protect instance.</td>
+</tr>
+<tr>
+<td><code>lights</code></td>
+<td>Lights device CLI.</td>
+</tr>
+<tr>
+<td><code>liveviews</code></td>
+<td>Liveviews CLI.</td>
+</tr>
+<tr>
+<td><code>nvr</code></td>
+<td>NVR device CLI.</td>
+</tr>
+<tr>
+<td><code>profile-ws</code></td>
+<td>Profiles Websocket messages for UniFi Protect instance.</td>
+</tr>
+<tr>
+<td><code>sensors</code></td>
+<td>Sensors device CLI.</td>
+</tr>
+<tr>
+<td><code>shell</code></td>
+<td>Opens iPython shell with Protect client initialized.</td>
+</tr>
+<tr>
+<td><code>viewers</code></td>
+<td>Viewers device CLI.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="multiple-item-cli-commands">Multiple Item CLI Commands<a class="headerlink" href="#multiple-item-cli-commands" title="Permanent link">&para;</a></h4>
+<p>All adoptable device CLIs, event and liveview CLI work on the idea you have multiple cameras, multiple lights, multiple events or multiple liveviews. As such, they have four variations:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># list all devices (or events/liveviews)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>unifi-protect<span class="w"> </span>cameras
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># list short list of all devices (or events/liveviews)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>list-ids
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1"># list a specific device (or event/liveview)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>DEVICE_ID
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1"># run a command against a specific device (or event/liveview)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>DEVICE_ID<span class="w"> </span>COMMAND
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The "list all devices" and "list a specific device" commands always return raw JSON. These commands can be paired with <a href="https://stedolan.github.io/jq/">jq</a> to parse and quick extra device data from them.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list-ids</code></td>
+<td>Requires no device ID. Prints list of "id name" for each device.</td>
+</tr>
+<tr>
+<td><code>set-person-track</code></td>
+<td>Requires device ID. Sets person auto tracking on or off for PTZ cameras.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h5>
+<h6 id="list-all-cameras">List All Cameras<a class="headerlink" href="#list-all-cameras" title="Permanent link">&para;</a></h6>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Plain</label><label for="__tabbed_1_2">JSON</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>list-ids
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>61b3f5c7033ea703e7000424:<span class="w"> </span>G4<span class="w"> </span>Bullet
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>61f9824e004adc03e700132c:<span class="w"> </span>G4<span class="w"> </span>PTZ
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>61be1d2f004bda03e700ab12:<span class="w"> </span>G4<span class="w"> </span>Dome
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>--output-format<span class="w"> </span>json<span class="w"> </span>cameras<span class="w"> </span>list-ids
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="o">[</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">  </span><span class="o">[</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span><span class="s2">&quot;61b3f5c7033ea703e7000424&quot;</span>,
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span><span class="s2">&quot;G4 Bullet&quot;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">  </span><span class="o">]</span>,
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">  </span><span class="o">[</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">    </span><span class="s2">&quot;61f9824e004adc03e700132c&quot;</span>,
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">    </span><span class="s2">&quot;G4 PTZ&quot;</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">  </span><span class="o">]</span>,
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">  </span><span class="o">[</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="w">    </span><span class="s2">&quot;61be1d2f004bda03e700ab12&quot;</span>,
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">    </span><span class="s2">&quot;G4 Done&quot;</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">  </span><span class="o">]</span>,
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">  </span>...
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="o">]</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<h6 id="check-if-a-light-is-online">Check if a Light is Online<a class="headerlink" href="#check-if-a-light-is-online" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>61ddb66b018e2703e7008c19<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.isConnected
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nb">true</span>
+</code></pre></div></td></tr></table></div>
+<h6 id="take-snapshot-of-camera">Take Snapshot of Camera<a class="headerlink" href="#take-snapshot-of-camera" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>61ddb66b018e2703e7008c19<span class="w"> </span>save-snapshot<span class="w"> </span>output.jpg
+</code></pre></div></td></tr></table></div>
+<h4 id="adoptable-devices-cli-commands">Adoptable Devices CLI Commands<a class="headerlink" href="#adoptable-devices-cli-commands" title="Permanent link">&para;</a></h4>
+<p>Adoptable devices (Cameras, Chimes, Doorlocks, Lights, Sensors, Viewers) all have some commands in common.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>adopt</code></td>
+<td>Adopts a device.</td>
+</tr>
+<tr>
+<td><code>bridge</code></td>
+<td>Returns bridge device if connected via Bluetooth.</td>
+</tr>
+<tr>
+<td><code>is-bluetooth</code></td>
+<td>Returns if the device has Bluetooth or not.</td>
+</tr>
+<tr>
+<td><code>is-wifi</code></td>
+<td>Returns if the device has WiFi or not.</td>
+</tr>
+<tr>
+<td><code>is-wired</code></td>
+<td>Returns if the device is wired or not.</td>
+</tr>
+<tr>
+<td><code>protect-url</code></td>
+<td>Gets UniFi Protect management URL.</td>
+</tr>
+<tr>
+<td><code>reboot</code></td>
+<td>Reboots the device.</td>
+</tr>
+<tr>
+<td><code>unadopt</code></td>
+<td>Unadopt/Unmanage adopted device.</td>
+</tr>
+<tr>
+<td><code>update</code></td>
+<td>Updates the device.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="backup-cli">Backup CLI<a class="headerlink" href="#backup-cli" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>backup<span class="w"> </span>--help
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w"> </span>Usage:<span class="w"> </span>unifi-protect<span class="w"> </span>backup<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w"> </span>Backup<span class="w"> </span>CLI.
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w"> </span>The<span class="w"> </span>backup<span class="w"> </span>CLI<span class="w"> </span>is<span class="w"> </span>still<span class="w"> </span>very<span class="w"> </span>WIP<span class="w"> </span><span class="k">in</span><span class="w"> </span>progress<span class="w"> </span>and<span class="w"> </span>consider<span class="w"> </span>experimental<span class="w"> </span>and<span class="w"> </span>potentially<span class="w"> </span>unstable<span class="w"> </span><span class="o">(</span>interface<span class="w"> </span>may<span class="w"> </span>change<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>future<span class="o">)</span>.
+</code></pre></div></td></tr></table></div>
+<h5 id="backup-options">Backup Options<a class="headerlink" href="#backup-options" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Option</th>
+<th>Env</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-s</code></td>
+<td><code>--start</code></td>
+<td><code>UFP_BACKUP_START</code></td>
+<td>datetime</td>
+<td></td>
+<td>Cutoff for start of backup. Defaults to start of recording for NVR.</td>
+</tr>
+<tr>
+<td><code>-e</code></td>
+<td><code>--end</code></td>
+<td><code>UFP_BACKUP_END</code></td>
+<td>datetime</td>
+<td></td>
+<td>Cutoff for end of backup. Defaults to now.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--output-folder</code></td>
+<td><code>UFP_BACKUP_OUTPUT</code></td>
+<td>path</td>
+<td><code>$PWD</code></td>
+<td>Base dir for creating files. Defaults to $PWD.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--thumb-format</code></td>
+<td></td>
+<td>text</td>
+<td><code>{year}/{month}/{day}/{hour}/{datetime}{sep}{mac}{sep}{camera_slug}{event_type}{sep}thumb.jpg</code></td>
+<td>Filename format to save event thumbnails to. Set to empty string ("") to skip saving event thumbnails.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--gif-format</code></td>
+<td></td>
+<td>text</td>
+<td><code>{year}/{month}/{day}/{hour}/{datetime}{sep}{mac}{sep}{camera_slug}{event_type}{sep}animated.gif]</code></td>
+<td>Filename format to save event gifs to. Set to empty string ("") to skip saving event gif.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--event-format</code></td>
+<td></td>
+<td>text</td>
+<td><code>{year}/{month}/{day}/{hour}/{datetime}{sep}{mac}{sep}{camera_slug}{event_type}.mp4</code></td>
+<td>Filename format to save event gifs to. Set to empty string ("") to skip saving event videos.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--title-format</code></td>
+<td></td>
+<td>text</td>
+<td><code>{time_sort_pretty_local} {sep} {camera_name} {sep} {event_type_pretty} {sep} {length_pretty}</code></td>
+<td>Format to use to tag title for video metadata.</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td><code>--verbose</code></td>
+<td></td>
+<td>boolean</td>
+<td><code>False</code></td>
+<td>Debug logging.</td>
+</tr>
+<tr>
+<td><code>-d</code></td>
+<td><code>--max-download</code></td>
+<td></td>
+<td>integer</td>
+<td><code>5</code></td>
+<td>Max number of concurrent downloads. Adds additional loads to NVR.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--page-size</code></td>
+<td></td>
+<td>integer</td>
+<td><code>1000</code></td>
+<td>Number of events fetched at once from local database. Increases memory usage.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--length-cutoff</code></td>
+<td></td>
+<td>integer</td>
+<td><code>3600</code></td>
+<td>Event size cutoff for detecting abnormal events (in seconds).</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--sep</code></td>
+<td></td>
+<td>boolean</td>
+<td><code>-</code></td>
+<td>Separator used for formatting.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--help</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Show help message and exit.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="file-name-and-title-formatting">File Name and Title Formatting<a class="headerlink" href="#file-name-and-title-formatting" title="Permanent link">&para;</a></h5>
+<p>There are <a href="#backup-options">5 options</a> controlling output format for file names and metadata. This allows you to customize backups to your liking. All 5 options are a template string. Here are all of the available templating variables:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>year</code></td>
+<td>UTC year of start of export.</td>
+</tr>
+<tr>
+<td><code>month</code></td>
+<td>UTC month of start of export.</td>
+</tr>
+<tr>
+<td><code>day</code></td>
+<td>UTC day of start of export.</td>
+</tr>
+<tr>
+<td><code>hour</code></td>
+<td>UTC hour of start of export.</td>
+</tr>
+<tr>
+<td><code>minute</code></td>
+<td>UTC minute of start of export.</td>
+</tr>
+<tr>
+<td><code>datetime</code></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> formatted UTC datetime of start of export. Uses <code>sep</code> between parts.</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> formatted UTC date of start of export. Uses <code>sep</code> between parts.</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>UTC time of start of export. Uses <code>sep</code> between parts. 24 hour time.</td>
+</tr>
+<tr>
+<td><code>time_sort_pretty</code></td>
+<td>UTC time of start of export. Uses <code>:</code> between parts. 24 hour time.</td>
+</tr>
+<tr>
+<td><code>time_pretty</code></td>
+<td>UTC time of start of export. Uses <code>:</code> between parts. 12 hour time with AM/PM.</td>
+</tr>
+<tr>
+<td><code>year_local</code></td>
+<td><a href="#timezones">Local</a> year of start of export.</td>
+</tr>
+<tr>
+<td><code>month_local</code></td>
+<td><a href="#timezones">Local</a> month of start of export.</td>
+</tr>
+<tr>
+<td><code>day_local</code></td>
+<td><a href="#timezones">Local</a> day of start of export.</td>
+</tr>
+<tr>
+<td><code>hour_local</code></td>
+<td><a href="#timezones">Local</a> hour of start of export.</td>
+</tr>
+<tr>
+<td><code>minute_local</code></td>
+<td><a href="#timezones">Local</a> minute of start of export.</td>
+</tr>
+<tr>
+<td><code>datetime_local</code></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> formatted <a href="#timezone">Local</a> datetime of start of export. Uses <code>sep</code> between parts.</td>
+</tr>
+<tr>
+<td><code>date_local</code></td>
+<td><a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> formatted <a href="#timezone">Local</a> date of start of export. Uses <code>sep</code> between parts.</td>
+</tr>
+<tr>
+<td><code>time_local</code></td>
+<td><a href="#timezones">Local</a> time of start of export. Uses <code>sep</code> between parts. 24 hour time.</td>
+</tr>
+<tr>
+<td><code>time_sort_pretty_local</code></td>
+<td><a href="#timezones">Local</a> time of start of export. Uses <code>:</code> between parts. 24 hour time.</td>
+</tr>
+<tr>
+<td><code>time_pretty_local</code></td>
+<td><a href="#timezones">Local</a> time of start of export. Uses <code>:</code> between parts. 12 hour time with AM/PM.</td>
+</tr>
+<tr>
+<td><code>mac</code></td>
+<td>MAC address of camera.</td>
+</tr>
+<tr>
+<td><code>camera_name</code></td>
+<td>Name of camera.</td>
+</tr>
+<tr>
+<td><code>camera_slug</code></td>
+<td>Lowercased name of camera with spaces replaced with <code>sep</code>.</td>
+</tr>
+<tr>
+<td><code>event_type</code></td>
+<td>Lowercased name of the event exported.</td>
+</tr>
+<tr>
+<td><code>event_type_pretty</code></td>
+<td>More human readable name of event exported.</td>
+</tr>
+<tr>
+<td><code>length_pretty</code></td>
+<td>Human readable version of the length of the clip exported.</td>
+</tr>
+<tr>
+<td><code>sep</code></td>
+<td>Separator to use in many cases.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="datetimes">Datetimes<a class="headerlink" href="#datetimes" title="Permanent link">&para;</a></h6>
+<p>All datetimes for the Backup CLi can either be in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> format or can be a human readable format that the Python library <a href="https://github.com/scrapinghub/dateparser">dateparse</a> can understand. This will allow relative datetimes to be passed, such as <code>"1 hour ago"</code> which will make backing up incremental for cron jobs.</p>
+<h6 id="formatting-for-plex">Formatting for Plex<a class="headerlink" href="#formatting-for-plex" title="Permanent link">&para;</a></h6>
+<p>You are able to export your Camera events and then access them in <a href="https://www.plex.tv/">Plex</a> relatively well. For setup in Plex, the following is recommended:</p>
+<ul>
+<li>Enable the "Local Media Assets" Agent Source for the Movies Library Type (Settings -&gt; Agents -&gt; Movies). <a href="https://support.plex.tv/articles/200265246-personal-media-movies/">Plex docs</a>.</li>
+<li>Create a "Other Videos" library pointing to the same folder as your <a href="#backup-options">--output-folder</a> folder.<ul>
+<li>Scanner: "Plex Video Files Scanner"</li>
+<li>Agent: "Personal Media"</li>
+</ul>
+</li>
+</ul>
+<p>Recommended formats for the backup command:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--thumb-format</code></td>
+<td><code>{year_local}/{month_local}/{day_local}/{hour_local}/{title}.jpg</code></td>
+</tr>
+<tr>
+<td><code>--gif-format</code></td>
+<td><code>{year_local}/{month_local}/{day_local}/{hour_local}/{title}.gif</code></td>
+</tr>
+<tr>
+<td><code>--event-format</code></td>
+<td><code>{year_local}/{month_local}/{day_local}/{hour_local}/{title}.mp4</code></td>
+</tr>
+<tr>
+<td><code>--title-format</code></td>
+<td><code>default</code> or whatever you want the title to be in Plex.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="backing-up-camera-events">Backing Up Camera Events<a class="headerlink" href="#backing-up-camera-events" title="Permanent link">&para;</a></h5>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>backup<span class="w"> </span>events<span class="w"> </span>--help
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w"> </span>Usage:<span class="w"> </span>unifi-protect<span class="w"> </span>backup<span class="w"> </span>events<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w"> </span>Backup<span class="w"> </span>thumbnails<span class="w"> </span>and<span class="w"> </span>video<span class="w"> </span>clips<span class="w"> </span><span class="k">for</span><span class="w"> </span>camera<span class="w"> </span>events.
+</code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-t</code></td>
+<td><code>--event-type</code></td>
+<td><code>motion</code>, <code>ring</code>, <code>smartDetectZone</code></td>
+<td><code>motion</code>, <code>ring</code>, <code>smartDetectZone</code></td>
+<td>Events to export. Can be used multiple time.</td>
+</tr>
+<tr>
+<td><code>-m</code></td>
+<td><code>--smart-type</code></td>
+<td><code>person</code>, <code>vehicle</code>, <code>package</code></td>
+<td><code>person</code>, <code>vehicle</code>, <code>package</code></td>
+<td>Smart Detection types to export. Can be used multiple time.</td>
+</tr>
+<tr>
+<td><code>-p</code></td>
+<td><code>--prune</code></td>
+<td>boolean</td>
+<td><code>False</code></td>
+<td>Prune events older then start.</td>
+</tr>
+<tr>
+<td><code>-f</code></td>
+<td><code>--force</code></td>
+<td>boolean</td>
+<td><code>False</code></td>
+<td>Force update all events and redownload all clips.</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td><code>--verify</code></td>
+<td>boolean</td>
+<td><code>False</code></td>
+<td>Verifies files on disk.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--no-input</code></td>
+<td>boolean</td>
+<td><code>False</code></td>
+<td>Disables confirmation prompt if <code>-p</code> and <code>-f</code> both passed.</td>
+</tr>
+<tr>
+<td></td>
+<td><code>--help</code></td>
+<td></td>
+<td></td>
+<td>Show help message and exit.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>backup events</code> command essentially mirrors all of the selected events from your UniFi Protect instance into a local sqlite database (<code>events.db</code> inside of the <code>--output-folder</code>). As a result, the initial run make take a <em>really long time</em> to run if your UniFi Protect instance has a lot of events inside of it.</p>
+<p>As an example using a UniFi Protect instance with ~200k events and ~8 months of camera footage:</p>
+<ul>
+<li>Building the database is in the range of hours</li>
+<li>Doing the initial download of event thumbnails, gifs and video clips is in the range of tens of hours (potentially 1-2 days)</li>
+<li>Incremental or targeted backups are much faster (&lt;1 per event)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Cron Usage</p>
+<p>For incremental backups in crons, it is recommended you run the command with an absolute start first to build your events database and do an initial download of files. This will significantly speed up the incremental backup commands.</p>
+</div>
+<h5 id="examples_1">Examples<a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h5>
+<h6 id="backup-all-events">Backup All Events<a class="headerlink" href="#backup-all-events" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a>unifi-protect<span class="w"> </span>backup<span class="w"> </span>events
+</code></pre></div></td></tr></table></div>
+<h6 id="backup-all-smart-detections-for-the-past-hour">Backup All Smart Detections for the Past Hour<a class="headerlink" href="#backup-all-smart-detections-for-the-past-hour" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>unifi-protect<span class="w"> </span>backup<span class="w"> </span>--start<span class="w"> </span><span class="s2">&quot;1 hour ago&quot;</span><span class="w"> </span>events<span class="w"> </span>-t<span class="w"> </span>smartDetectZone
+</code></pre></div></td></tr></table></div>
+<h6 id="backup-all-person-smart-detections-from-december-31st-at-10pm-to-january-1st-at-5am">Backup All Person Smart Detections from December 31st at 10PM to January 1st at 5AM<a class="headerlink" href="#backup-all-person-smart-detections-from-december-31st-at-10pm-to-january-1st-at-5am" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>unifi-protect<span class="w"> </span>backup<span class="w"> </span>--start<span class="w"> </span><span class="s2">&quot;2021-12-31T22:00:00&quot;</span><span class="w"> </span>--end<span class="w"> </span><span class="s2">&quot;2022-1-1T05:00:00&quot;</span><span class="w"> </span>events<span class="w"> </span>-t<span class="w"> </span>smartDetectZone<span class="w"> </span>-m<span class="w"> </span>person
+</code></pre></div></td></tr></table></div>
+<h4 id="camera-cli">Camera CLI<a class="headerlink" href="#camera-cli" title="Permanent link">&para;</a></h4>
+<p>Inherits <a href="#multiple-item-cli-commands">Multiple Item CLI Commands</a> and <a href="#adoptable-devices-cli-commands">Adoptable Devices CLI Commands</a>.</p>
+<h5 id="examples_2">Examples<a class="headerlink" href="#examples_2" title="Permanent link">&para;</a></h5>
+<h6 id="take-snapshot-of-camera_1">Take Snapshot of Camera<a class="headerlink" href="#take-snapshot-of-camera_1" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>61ddb66b018e2703e7008c19<span class="w"> </span>save-snapshot<span class="w"> </span>output.jpg
+</code></pre></div></td></tr></table></div>
+<h6 id="export-video-from-camera">Export Video From Camera<a class="headerlink" href="#export-video-from-camera" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>61ddb66b018e2703e7008c19<span class="w"> </span>save-video<span class="w"> </span>export.mp4<span class="w"> </span><span class="m">2022</span>-6-1T00:00:00<span class="w"> </span><span class="m">2022</span>-6-1T00:00:30
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Timezones</p>
+<p>See the section on <a href="#timezone">Timezones</a> for determined what timezone your datetimes are in.</p>
+</div>
+<h6 id="play-audio-file-to-cameras-speaker">Play Audio File to Cameras Speaker<a class="headerlink" href="#play-audio-file-to-cameras-speaker" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>61ddb66b018e2703e7008c19<span class="w"> </span>play-audio<span class="w"> </span>test.mp3
+</code></pre></div></td></tr></table></div>
+<h6 id="include-unadopted-cameras-in-list">Include Unadopted Cameras in list<a class="headerlink" href="#include-unadopted-cameras-in-list" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>-u<span class="w"> </span>cameras<span class="w"> </span>list-ids
+</code></pre></div></td></tr></table></div>
+<h6 id="adopt-an-unadopted-camera">Adopt an Unadopted Camera<a class="headerlink" href="#adopt-an-unadopted-camera" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>-u<span class="w"> </span>cameras<span class="w"> </span>61ddb66b018e2703e7008c19<span class="w"> </span>adopt
+</code></pre></div></td></tr></table></div>
+<h6 id="enable-ssh-on-camera">Enable SSH on Camera<a class="headerlink" href="#enable-ssh-on-camera" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span>
+<span class="normal"><a href="#__codelineno-20-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>61ddb66b018e2703e7008c19<span class="w"> </span>set-ssh<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="c1"># get current value to verify</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>61ddb66b018e2703e7008c19<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.isSshEnabled
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="nb">true</span>
+</code></pre></div></td></tr></table></div>
+<h6 id="reboot-camera">Reboot Camera<a class="headerlink" href="#reboot-camera" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>lights<span class="w"> </span>61b3f5c801f8a703e7000428<span class="w"> </span>reboot
+</code></pre></div></td></tr></table></div>
+<h6 id="reboot-all-cameras">Reboot All Cameras<a class="headerlink" href="#reboot-all-cameras" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="k">for</span><span class="w"> </span>id<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span>list-ids<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{ print $1 }&#39;</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="w">    </span>unifi-protect<span class="w"> </span>cameras<span class="w"> </span><span class="nv">$id</span><span class="w"> </span>reboot
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="k">done</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="chime-cli">Chime CLI<a class="headerlink" href="#chime-cli" title="Permanent link">&para;</a></h4>
+<p>Inherits <a href="#multiple-item-cli-commands">Multiple Item CLI Commands</a> and <a href="#adoptable-devices-cli-commands">Adoptable Devices CLI Commands</a>.</p>
+<h5 id="examples_3">Examples<a class="headerlink" href="#examples_3" title="Permanent link">&para;</a></h5>
+<h6 id="set-paired-cameras">Set Paired Cameras<a class="headerlink" href="#set-paired-cameras" title="Permanent link">&para;</a></h6>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a>$<span class="w"> </span>unifi-protect<span class="w"> </span>chimes<span class="w"> </span>6275b22e00e3c403e702a019<span class="w"> </span>cameras<span class="w"> </span>61ddb66b018e2703e7008c19<span class="w"> </span>61f9824e004adc03e700132c
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 21, 2024</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 11, 2022</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      pyunifiprotect is an unofficial API for UniFi Protect. There is no affiliation with Ubiquiti.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "header.autohide"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ebd0bdb7.min.js"></script>
+      
+    
+  </body>
+</html>
