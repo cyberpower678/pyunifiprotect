@@ -1161,6 +1161,7 @@ class ProtectApiClient(BaseApiClient):
         progress_callback: Optional[ProgressCallback] = None,
         chunk_size: int = 65536,
         fps: Optional[int] = None,
+        filename: Optional[str] = None,
     ) -> Optional[bytes]:
         """Exports MP4 video from a given camera at a specific time.
 
@@ -1182,22 +1183,53 @@ class ProtectApiClient(BaseApiClient):
             except IndexError as e:
                 raise BadRequest from e
 
-        params = {
+        base_params = {
             "camera": camera_id,
             "start": to_js_time(start),
             "end": to_js_time(end),
         }
 
-        if fps is not None:
-            params["fps"] = fps
-            params["type"] = "timelapse"
-
         if channel_index == 3:
-            params.update({"lens": 2})
+            base_params.update({"lens": 2})
         else:
-            params.update({"channel": channel_index})
+            base_params.update({"channel": channel_index})
 
-        path = "video/export"
+        if fps is not None:
+            base_params["fps"] = fps
+            base_params["type"] = "timelapse"
+            prepare_params = base_params.copy()
+        else:
+            prepare_params = base_params.copy()
+            prepare_params["type"] = "rotating"
+
+        if not filename:
+            start_str = start.strftime('%m-%d-%Y, %H.%M.%S %Z')
+            end_str = end.strftime('%m-%d-%Y, %H.%M.%S %Z')
+            filename = f"{camera_id} {start_str} - {end_str}.mp4"
+
+        prepare_params['filename'] = filename
+
+        path_prepare = "video/prepare"
+        path_download = "video/download"
+        path_export = "video/export"
+        try:
+            prepare_response = await self.api_request(
+                path_prepare,
+                params=prepare_params,
+                raise_exception=True
+            )
+
+            download_filename = prepare_response["fileName"]
+
+            path = path_download
+            params = {
+                "camera": camera_id,
+                "filename": download_filename
+            }
+        except Exception as e:
+            path = path_export
+            params = base_params
+
         if (
             iterator_callback is None
             and progress_callback is None
