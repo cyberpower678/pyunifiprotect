@@ -1203,11 +1203,11 @@ class ProtectApiClient(BaseApiClient):
             prepare_params["type"] = "rotating"
 
         if not filename:
-            start_str = start.strftime('%m-%d-%Y, %H.%M.%S %Z')
-            end_str = end.strftime('%m-%d-%Y, %H.%M.%S %Z')
+            start_str = start.strftime("%m-%d-%Y, %H.%M.%S %Z")
+            end_str = end.strftime("%m-%d-%Y, %H.%M.%S %Z")
             filename = f"{camera_id} {start_str} - {end_str}.mp4"
 
-        prepare_params['filename'] = filename
+        prepare_params["filename"] = filename
 
         path_prepare = "video/prepare"
         path_download = "video/download"
@@ -1216,7 +1216,7 @@ class ProtectApiClient(BaseApiClient):
             prepare_response = await self.api_request(
                 path_prepare,
                 params=prepare_params,
-                raise_exception=True
+                raise_exception=True,
             )
 
             download_filename = prepare_response["fileName"]
@@ -1226,7 +1226,7 @@ class ProtectApiClient(BaseApiClient):
                 "camera": camera_id,
                 "filename": download_filename
             }
-        except Exception as e:
+        except Exception:
             path = path_export
             params = base_params
 
