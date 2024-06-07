@@ -475,7 +475,22 @@ class UnifiOSClient:
                 )
             return
 
-        token_cookie = response.cookies.get(await self.get_auth_cookie_name())
+        # token_cookie = response.cookies.get(await self.get_auth_cookie_name())
+        # TODO: This is a hack to work around: https://github.com/python/cpython/issues/112713
+        token_cookie = None
+        cookies = response.headers.get("Set-Cookie")
+        if not cookies:
+            return
+        for cookie in cookies.split(";"):
+            if "=" not in cookie:
+                # Unifi protect seems to be returning invalid cookies, ignore them
+                continue
+            name, value = cookie.split("=")
+            # For some reason on my Unifi Protect instance, I am still seeing the old "TOKEN" even though I am on 4.x.x
+            if name == "TOKEN" or name == "UOS_TOKEN":
+                token_cookie = Morsel()
+                token_cookie.set(name, value, str(value))
+
         if token_cookie and token_cookie != self._last_token_cookie:
             self._last_token_cookie = token_cookie
             self._last_token_cookie_decode = None
