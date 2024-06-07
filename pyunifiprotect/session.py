@@ -98,7 +98,6 @@ class SessionCache:
 
     async def read_session(
         self,
-        cookie_name: str,
         session_hash: str,
     ) -> SessionDict | None:
         """Read session cache and get specific session."""
@@ -113,26 +112,32 @@ class SessionCache:
             return None
 
         cookie = SimpleCookie()
+        cookie_name = session.get("cookie_name")
         cookie[cookie_name] = session.get("value")
         for key, value in session.get("metadata", {}).items():
             cookie[cookie_name][key] = value
 
-        return {"auth_cookie": cookie, "csrf_token": session.get("csrf")}
+        return {
+            "auth_cookie": cookie,
+            "csrf_token": session.get("csrf"),
+            "cookie_name": cookie_name,
+        }
 
     async def write_session(
         self,
         session_hash: str,
         auth_cookie: Morsel[str],
         csrf_token: str | None,
+        cookie_name: str,
     ) -> None:
         """Write session to session cache."""
-
         cache = await self.read_session_cache()
         cache = cache or {}
         cache[session_hash] = {
             "metadata": dict(auth_cookie),
             "value": auth_cookie.value,
             "csrf": csrf_token,
+            "cookie_name": cookie_name,
         }
 
         await self.write_session_cache(cache)
@@ -287,8 +292,7 @@ class UnifiOSClient:
             username=self._username,
             prefix=await self.get_version_prefix(),
         )
-        cookie_name = await self.get_auth_cookie_name()
-        session = await self.session_cache.read_session(cookie_name, session_hash)
+        session = await self.session_cache.read_session(session_hash)
         if not session:
             return
 
@@ -296,6 +300,8 @@ class UnifiOSClient:
             self.set_header("x-csrf-token", session["csrf_token"])
 
         cookie = session["auth_cookie"]
+        cookie_name = session["cookie_name"]
+        self._auth_cookie_name = cookie_name
         cookie_value = _COOKIE_RE.sub("", str(cookie[cookie_name]))
         self._last_token_cookie = cookie[cookie_name]
         self._last_token_cookie_decode = None
@@ -486,8 +492,8 @@ class UnifiOSClient:
                 # Unifi protect seems to be returning invalid cookies, ignore them
                 continue
             name, value = cookie.split("=")
-            # For some reason on my Unifi Protect instance, I am still seeing the old "TOKEN" even though I am on 4.x.x
             if name == "TOKEN" or name == "UOS_TOKEN":
+                self._auth_cookie_name = name
                 token_cookie = Morsel()
                 token_cookie.set(name, value, str(value))
 
@@ -504,9 +510,7 @@ class UnifiOSClient:
                 prefix=await self.get_version_prefix(),
             )
             await self.session_cache.write_session(
-                session_hash,
-                token_cookie,
-                csrf_token,
+                session_hash, token_cookie, csrf_token, token_cookie.key
             )
 
     def is_authenticated(self) -> bool:
